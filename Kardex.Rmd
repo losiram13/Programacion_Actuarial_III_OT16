@@ -1,0 +1,30 @@
+---
+
+---
+#*Kardex. Marisol Vazquez Herrera, 201518746
+
+
+#Primer Semestre:
+     
+##Materia:                            Calificación:
+     
+###*Programación Actuarial I.                  7
+###Intr. a la Profesión Actuarial             9
+###*DHPC                                      10
+###*Conceptos de Cálculo                      10
+###*Matemáticas Básicas                        9
+###*Problemas de Mat. Básicas                  9
+    
+#Segundo Semestre
+##Materia:                           Calificación:
+    
+###*Programación Actuarial II                  7 
+###*Teoría del Interés                         7
+###*Microeconomía                             10
+###*Cálculo Diferencial                        8
+###*Geometría Analitica                       10
+###*Teoría de Ecuaciones                       9
+    
+    
+ 
+ 
