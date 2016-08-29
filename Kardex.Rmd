@@ -1,6 +1,3 @@
----
-
----
 #*Kardex. Marisol Vazquez Herrera, 201518746
 
 
@@ -26,5 +23,7 @@
 ###*Teoría de Ecuaciones                       9
     
     
+ 
+ 
  
  
