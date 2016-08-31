@@ -132,3 +132,98 @@ cbind(m2,y)
 install.packages("rmarkdown")
 
 
+
+
+
+
+
+
+
+
+
+#Clase 31-08-16
+#Factores
+x<- factor(c("si","no","si","no","si","no","si","no","hola"))
+x
+
+table(x)
+unclass(x)
+
+
+x<- factor(c("si","no","si","no","si","no","si","no","hola")),leves= c("si","no","hola")
+
+
+
+
+
+
+#Valores faltantes
+x<- c(1,2,NA, 10,3)
+is.na(x)
+is.nan(x)
+
+
+x<- c(1,2,NaN, 10,3)
+is.na(x)
+is.nan(x)
+
+
+
+#Data frames
+x<- data.frame(Erick = 1:4, Lori= c(T,T,F,F))
+x
+row.names(x) <-c("Primero","Segundo","Tercero", "Cuarto") #poner nombre a filas
+x
+nrow(x)
+ncol(x)
+attributes(x)
+
+names(x)<- c("Yareli","Karen")
+x
+
+
+
+#Los nombres no son exclusivos de los Data frames
+x<- 1:3
+names(x) #NULL
+names(x) <- c("hugo", "Paco","Luis")
+x
+
+x<- list(a=1:10, b=100:91, c=51:60)
+x
+names(x)<- c("Seq1","Seq2","Seq3")
+x
+
+
+m<- matrix(1:4,2,2)
+m
+attributes(m)
+dimnames(m) <- list(c("Fil1","Fil2"),c("Col1","Col2")) #Poner nombre a las filas de la matríz
+m
+
+
+r<- matrix(nrow=5,ncol=6)    #creamos una tabla tipo excel 
+dimnames(r)<- list(c("1","2","3","4","5"),c("A","B","C","D","E","F"))
+r
+
+
+
+?factor
+
+
+#Lectura de datos
+
+getwd()
+setwd("~/GitHub/Programacion_Actuarial_III_OT16")
+data<- read.csv("Datos_S&P.csv")
+data<- read.table("Datos_S&P.csv",T,",")
+data
+
+
+
+
+
+
+
+
+
