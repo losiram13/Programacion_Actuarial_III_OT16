@@ -217,7 +217,121 @@ getwd()
 setwd("~/GitHub/Programacion_Actuarial_III_OT16")
 data<- read.csv("Datos_S&P.csv")
 data<- read.table("Datos_S&P.csv",T,",")
-data
+data 
+lapply(read.table("Datos_S&P.csv",T,","),class)  
+#Lapply sirve para aplicar alguna función a una lista de datos, 
+#como en este ejemplo para conocer la clase de cada lista en la base de datos 
+
+
+getwd()
+setwd("~/GitHub/Programacion_Actuarial_III_OT16")
+data<- read.csv("Datos_S&P.csv")
+data<- read.table("Datos_S&P.csv",T,",",nrows=100)
+clases<- sapply(data,class)
+data<- read.table("Datos_S&P.csv",T,",",colclasess=clases)
+
+view(data)
+
+
+# uso de dput y dget
+# dump= pueden crear formatos editables en texto que son bastate recuperables = dput; preservan la "metadata", para que otros usuarios no tengan que especificarla otra vez.
+
+ y<- data.frame(a=1, b="a")
+ 
+ dput(y)
+ 
+dput(y, file="y.R")
+
+nueva.y<-dget("y.R")
+y
+nueva.y
+
+x<- "Programación Actuarial III"
+y<- data.frame(a=1, b="a")
+dump(c("x","y"),file = "data.R")
+rm(x,y) #remover-borrar
+source("data.R")
+
+dput(airquality, file="airquality")   #guardar un archivo= dput(nombre del archivo. file=como se llama actualmente)
+
+#file, abre ua conexion a un archivo
+#con<-url("") "conecta con una pagina de internet
+str(file)  # description= nombre del archivo,open=que es lo que quiero hacer(r=lectura, )
+
+
+con<- url("http://www.fcfm.buap.mx/","r")
+x<-readLines(con,7)
+x
+#--->writeLines("toma un vector de caracteristicas y escribe cada elemento en una linea a la vez en un archico de texto")lo gusrda en archivo dif.
+
+###########################################################################################################
+#Subconjuntos: extraer subconjuntos([ regresa un objeto de la misma clase del original, [[ extrae un elemento de una lista o data frame. solamente extrae un elemento, $ extrae elementos de una lista o data frame por nombre)
+
+
+#creamos vector#
+x<- c("a","b","c","c","d","e")
+#veamos el vector
+x
+
+#extraemos elementos con []
+x[1]   #toma el primer elemento
+x[2]   # toma el segundo elemento
+#tambien podemos extraer una secuencia de elementos
+x[1:4]   #toma elementos del 1 al 4
+#es posible extraer los elementos que cumplen una restriccion
+x[x>"b"]   #toma los elementos que sean mayoresque b en orden alfabetico
+#De manera equivalente se puede obtener un vector lógico 
+u<- x=="c"   #toma los elemntos que sean iguales a c
+u
+
+x[u]   # muestra los elementos de u
+
+#creamos una lista
+x<- list(foo=1:4,bar=0.6)
+#extraemos el primer elemento de la lista,
+#este elemento es ua lista que contiene una secuencia
+x[1]
+
+"extraemos nuevamente el primer elemento de la lista,
+#ahora el elemento es la secuencia en sí"
+x[[1]]
+#extraemos un elemento por nombre
+x$bar
+x[["bar"]]
+x["bar"]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
