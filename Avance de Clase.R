@@ -300,6 +300,86 @@ x$bar
 x[["bar"]]
 x["bar"]
 
+######################################################################3
+#creamos una lista de 3 elementos
+x<- list(foo=1:4, bar=0.6, baz="hola")
+#extraemos el primer y tercer elemento de la lista
+x[c(1,3)]
+
+
+x[[c(1,3)]]
+
+name<-"foo"
+x[[name]]
+x$name
+
+#se pueden extraer elementos de los elementos extraídos
+x<- list(a=list(10,12,14), b=list(3.14,2.81))
+x[[c(1,3)]]
+x[[1]][[3]]
+x[[c(2,1)]]
+
+#extraccion de un dato en una matriz
+x<- matrix(1:6,2,3) 
+x
+
+x[1,2]
+x[2,1]
+x[1,]
+x[,2]
+
+
+#el resultado es una vector
+x[1,2]
+#con drop=FALSE, se mantiene la dimension y el resultado será una matriz
+x[1,2,drop = FALSE]
+
+x<- matrix(1:6,2,3)
+x
+
+#sidejamos solamente el espacio, el resultado será un vector
+x[1,]
+
+#si usamos drop=FALSE, el resultado será una matriz 
+x[1, ,drop=FALSE]
+
+#<3
+x<- list(erfrkh = 1:5)
+x$e   #extrae los elementos de e ya que su nombre empieza con e
+x[["e"]] # extrae un elemento de la lista que sea e
+x[["e",exact=FALSE]] #extrae los elementos de a por que especificamos que no tome a
+
+
+#######valores faltantes##### 
+airquality[1:6,] # extrae las filas del 1:6, y de todas las comulmnas
+completos<- complete.cases(airquality)  #te da como resultado un vector 
+
+completos #true si estan completos y false si estan incompletos
+
+airquality[completos,]  #toma los datos completos de todo el doc.
+airquality[completos,][1:6,] #toma las primeras 6 filas completas
+
+airquality[1:6,][completos,]
+
+
+#colocar diferentes lineas en una sola separadas por ;
+
+x<- 1:4; y<- 6:9
+x+y
+x>2 #hay algun numero en x mayores a dos
+x>=2 #hay algun numero x mayores o iguales a 2
+y==8
+x*y
+x/y
+
+#si y tiene solo 8 elementos vuelve a tomar el mas pequeño de y 
+x<- matrix(1:4,2,2);y<- matrix(rep(10,4),2,2)
+x;y 
+
+x*y
+x/y
+x%*%y
+
 
 
 
