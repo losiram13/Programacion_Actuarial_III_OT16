@@ -8,11 +8,11 @@ mediacontaminante <- function(directorio,contaminante,id=1:322){
     data1 <- read.csv(paste(formatC(n,width = 3, flag = "0"), ".Csv",sep = ""), header = T)
     
     if(contaminante=="sulfate")
-    {r<-data1[,2]
-    datos<-c(datos,r)}
+    {sulfato<-data1[,2]
+    datos<-c(datos,sulfato)}
     else
-    {n<-data1[,2]
-    datos<-c(datos,n)}
+    {nitrato<-data1[,3]
+    datos<-c(datos,nitrato)}
   }
   mean(datos,na.rm=TRUE)
 }

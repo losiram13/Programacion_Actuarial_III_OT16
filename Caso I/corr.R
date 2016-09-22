@@ -1,5 +1,5 @@
 #Para obtener el coeficiente de correlación entre estas variables pueden ocupar la función cor().
-#cor(estudio2012$ansev, estudio2012$insom,use = "pairwise.complete.obs" # necesario cuando hay NAs)
+
 
 corr<-function(directorio,horizonte=0){
   

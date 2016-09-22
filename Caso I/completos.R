@@ -1,3 +1,5 @@
+
+
 completos<-function(directorio,id=1:332){
   setwd("~/GitHub/Programacion_Actuarial_III_OT16/specdata")
   completo<-integer()
