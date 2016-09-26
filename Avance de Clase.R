@@ -36,12 +36,12 @@ y<- c(1.7, "a")   #caracter
 y
 class(y)
 
-y<- c(true,2)   #numerico
+y<- c(TRUE,2)   #numerico
 y 
 class(y)
 
 
-y<- c("a", True) #caracter
+y<- c("a", TRUE) #caracter
 y
 class(y)
 
@@ -83,7 +83,8 @@ as.logical(z)
 as.complex(z)
 
 
-#lista (es como un vector... pero con vectores y c/u tiene su propia clase)
+#lista (es como un vector... pero con vectores 
+#  y c/u tiene su propia clase)
 
 x <- list(1,"a",TRUE, 1+4i)
 x
@@ -113,7 +114,9 @@ str(m)
 dim(m) z-c(2,5)  # esto va a producir un error 
 
 x<- c(1,2,3)
+x
 y<- c("a","b","c")
+y
 z<- c(x,y)
 z
 class(z)
@@ -132,15 +135,6 @@ cbind(m2,y)
 install.packages("rmarkdown")
 
 
-
-
-
-
-
-
-
-
-
 #Clase 31-08-16
 #Factores
 x<- factor(c("si","no","si","no","si","no","si","no","hola"))
@@ -150,7 +144,7 @@ table(x)
 unclass(x)
 
 
-x<- factor(c("si","no","si","no","si","no","si","no","hola")),leves= c("si","no","hola")
+x<- factor"(c("si","no","si","no","si","no","si","no","hola"))","leves= c("si","no","hola")"
 
 
 
@@ -167,11 +161,11 @@ x<- c(1,2,NaN, 10,3)
 is.na(x)
 is.nan(x)
 
-
-
 #Data frames
 x<- data.frame(Erick = 1:4, Lori= c(T,T,F,F))
 x
+
+
 row.names(x) <-c("Primero","Segundo","Tercero", "Cuarto") #poner nombre a filas
 x
 nrow(x)
@@ -185,7 +179,7 @@ x
 
 #Los nombres no son exclusivos de los Data frames
 x<- 1:3
-names(x) #NULL
+names(x) #NULL(osea que no tiene nombre)
 names(x) <- c("hugo", "Paco","Luis")
 x
 
@@ -203,6 +197,7 @@ m
 
 
 r<- matrix(nrow=5,ncol=6)    #creamos una tabla tipo excel 
+r
 dimnames(r)<- list(c("1","2","3","4","5"),c("A","B","C","D","E","F"))
 r
 
@@ -216,6 +211,7 @@ r
 getwd()
 setwd("~/GitHub/Programacion_Actuarial_III_OT16")
 data<- read.csv("Datos_S&P.csv")
+data
 data<- read.table("Datos_S&P.csv",T,",")
 data 
 lapply(read.table("Datos_S&P.csv",T,","),class)  
@@ -228,16 +224,18 @@ setwd("~/GitHub/Programacion_Actuarial_III_OT16")
 data<- read.csv("Datos_S&P.csv")
 data<- read.table("Datos_S&P.csv",T,",",nrows=100)
 clases<- sapply(data,class)
-data<- read.table("Datos_S&P.csv",T,",",colclasess=clases)
+data<- read.table("Datos_S&P.csv",T,",", colClasses = clases)
 
 view(data)
 
 
 # uso de dput y dget
-# dump= pueden crear formatos editables en texto que son bastate recuperables = dput; preservan la "metadata", para que otros usuarios no tengan que especificarla otra vez.
+# dump= pueden crear formatos editables en texto que son bastate 
+# recuperables = dput; preservan la "metadata", para que otros usuarios 
+# no tengan que especificarla otra vez.
 
  y<- data.frame(a=1, b="a")
- 
+ y
  dput(y)
  
 dput(y, file="y.R")
@@ -265,7 +263,10 @@ x
 #--->writeLines("toma un vector de caracteristicas y escribe cada elemento en una linea a la vez en un archico de texto")lo gusrda en archivo dif.
 
 ###########################################################################################################
-#Subconjuntos: extraer subconjuntos([ regresa un objeto de la misma clase del original, [[ extrae un elemento de una lista o data frame. solamente extrae un elemento, $ extrae elementos de una lista o data frame por nombre)
+#Subconjuntos: extraer subconjuntos([ regresa un objeto de la misma
+# clase del original, [[ extrae un elemento de una lista o data frame.
+# solamente extrae un elemento, 
+#$ extrae elementos de una lista o data frame por nombre)
 
 
 #creamos vector#
@@ -288,6 +289,7 @@ x[u]   # muestra los elementos de u
 
 #creamos una lista
 x<- list(foo=1:4,bar=0.6)
+x
 #extraemos el primer elemento de la lista,
 #este elemento es ua lista que contiene una secuencia
 x[1]
@@ -347,12 +349,13 @@ x[1, ,drop=FALSE]
 x<- list(erfrkh = 1:5)
 x$e   #extrae los elementos de e ya que su nombre empieza con e
 x[["e"]] # extrae un elemento de la lista que sea e
-x[["e",exact=FALSE]] #extrae los elementos de a por que especificamos que no tome a
+x[["e",exact=FALSE]] #extrae los elementos de e por que especificamos que no tome e
 
 
 #######valores faltantes##### 
-airquality[1:6,] # extrae las filas del 1:6, y de todas las comulmnas
-completos<- complete.cases(airquality)  #te da como resultado un vector 
+airquality[1:6,] # extrae las filas del 1:6, y de todas las comulumnas
+completos<- complete.cases(airquality)  #te da como resultado un 
+#vector 
 
 completos #true si estan completos y false si estan incompletos
 
@@ -381,15 +384,191 @@ x/y
 x%*%y
 
 
+###3##-------------------------########
+#estructuras de contol
+#if else: probar una condicion
+#for: ejecuta un ciclo de un determinado numero de veces
+#while: ejecuta un ciclo mientras se cumpla una condicion
+#repeat: ejecuta un ciclo infinito
+#break; termina la ejecucion de un ciclo
+# next: "salta" una iteración de un ciclo ---->en repit
+#return: sale de una funcion 
+
+
+x<-c("a","b","c","d")
+for(i in 1:4){
+  print(x[i])
+}
+
+for(i in seq_along(x)){
+   print(x[i])
+}
+
+for(letra in x){
+  print(letra)
+}
+
+for(i in 1:4) print(x[i]) #no se utiliza llaves por que  solo utilizé una condición.
 
 
 
+s<- matrix(1:6,2,3)
+s
+for(i in seq_len(nrow(s))){
+  for(j in seq_len(ncol(s))){
+    print(s[i,j])
+  }
+}
+
+
+#ciclo while: repetir instrucciones mientras no se cumple una condición
+
+z<-5
+while(z>=3 && z<=10){
+
+  print(z)
+moneda<-rbinom(1,1,0.5)  #rbinom crea numeros aleatorios
+if(moneda==1){#caminata aleatoria
+  z<- z+1
+} else {
+    z<- z-1
+  }
+}
+
+#  rbinom(no. de datos, parametros, probabilidad de exito) genera numeros aleatorios
+# == dice igual lógico
+#&& operaciones con verdadero falso(condicion)
+#& trabajamos con un vector y el resultado sera un vector
 
 
 
+z<-5
+while(z>=3 && z<=10){
+  print(z)
+  moneda<-rbinom(1,1,0.5)
+  if(moneda==1){#caminata aleatoria
+    z<- z+1
+  } else {
+    z<- z-1
+  }
+}
+
+z<-5
+while(z>=3 && z<=10){
+  print(z)
+  y<-c(y,z)
+  moneda<-rbinom(1,1,0.5)
+  if(moneda==1){#caminata aleatoria
+    z<- z+0.5
+  } else {
+    z<- z-0.5
+  }
+}
+y
+
+plot(y,type="l")  #crea la grafica de el vector y
+
+arriba=0
+abajo=0
+for (i in 1:100){
+  z<-5
+  while(z>=3 && z<=10){
+    print(z)
+    y<-c(y,z)
+    moneda<-rbinom(1,1,0.5)
+    if(moneda==1){#caminata aleatoria
+      z<- z+0.5
+    } else {
+      z<- z-0.5
+    }
+  }
+  y
+
+if (z=10) {arriba<-c(arriba+1)}
+else {abajo<-c(abajo+1)}
+
+}
+arriba
+abajo
+
+#estructura de control: repeat
+x0<- 1
+tol <- 1e-8
+repeat{
+  x1<- CalculaEstimado(x0)
+  if(abs(x1-x0)< tol)
+  {break}
+  else
+  {x0<-x1}
+}
+
+#se utiliza next para no hacer iteración en un ciclo
+for(i in 1:100)
+{if (1<=20)
+{next}
+  #otras instrucciones
+  }
 
 
+#creacion de Funciones (checar pag 42 y copiar)
+suma2<- function(x,y)
+{x+y}
 
+mayor10<-function(x)
+{validos<-x>10
+x[validos]}
+mayor10(56)
+
+mayor<-function(x,n-10){
+  x[x>10]
+}
+
+promedioCol<-function(x,quitarNA =TRUE){
+  nc<-ncol(x)
+  medias<-vector("numeric",nc)
+  for (i in 1:nc){
+    medias[i]<-mean(x[,i],na.rm=quitarNA)
+  
+  }
+  medias
+}
+
+
+#evaluacion perezosa
+f<- function(a,b){
+a^2
+}
+f(2)
+f<-function(a,b){
+  print(a)
+  print(b)
+}
+f(3)
+
+
+# el argumento "..."
+myplot<-function(x,y,type="l",...){
+  plot(x,y,type = type,...)}
+
+args(paste) #pega un texto con otro separado con un espacio sep=""
+function(...,sep="",collapse=NULL)
+  NULL
+
+
+args(paste)
+function(...,sep="",collapse=NULL)
+  NULL
+
+paste("a","b",sep=":")
+paste("a","b",se=":")
+  
+args(cat)
+funtion(...,file="",sep="",fill=FALSE,labels=NULL,append=FALSE)
+NULL
+
+?formatC
+
+# source("funcion")= sirve para llamar una función en otra función
 
 
 
