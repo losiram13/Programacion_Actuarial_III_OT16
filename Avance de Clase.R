@@ -571,16 +571,167 @@ NULL
 # source("funcion")= sirve para llamar una función en otra función
 
 
+lm # esta guardado en stats
+lm<- function(x){x*x}  # cambias la función
+lm
+rm(lm) #borra lo que hiciste por segunda vez 
+lm
 
 
+search() #orden a buscar alguna función, lista de entornos
 
 
+#configurar el orden de los paquetes 
+
+library(stats)
+search()
+
+#R sigue el Ámbito lexicológico o estático; ámbito dinámico
+# Con ámbito léxico, un nombre siempre refiere a su entorno léxico local. esta es una propiedad del programa texto y se realiza independientemente de la llamada a la pila durante el tiempo de ejecución a través de la implementación del lenguaje.
+# Debido a que esta correspondencia solo requiere un análisis del programa texto estático, este tipo de ámbito es también llamado ámbito estático.
 
 
+#variable libre: no esta definida dentro de la funcion, pero son buscados en el entorno de trabajo e el que la funcion fue definida
 
 
+hacer.potencia<- function(n)
+{potencia<- function(x){
+  x^n
+}
+potencia
+}
 
 
+#esta funcion regresa como resultado una funcion con su valor
+cubica<-hacer.potencia(3)
+cuadrada<-hacer.potencia(2)
+
+cubica(3)
+cuadrada(3)
+
+#¿Qué es el entorno de una función?
+ls(environment(cubica))
+get("n",environment(cubica))
+ls(environment(cuadrada))
+get("n",environment(cuadrada))
+
+#estatico vs dinamico
+
+y<-10
+f<-function(x){
+  y<-2
+  y^2+g(x)
+  
+}
+g<-function(x){
+  x*y
+}
+
+f(3)
+
+#estandares de escritura
+#   sangrías,longitud a 80 columas.
+#   Archivos de texto.
+#   Tamaño de las funciones: limitar a una sola actividad, leer datos separados, 
+#                           procesarlos, generar reporte. 
+#   Fechas y tiempo: fechas(clase: data);tiempos(clases: POSIXct/POSIXlt)
+#POSIXct: entero muy grande; util para guardadr datos en un data.frame
+#POSIXlt: es una lista y guarda un cojunto de información 
+
+#Fechas y tiempos:
+x<-as.Date("1970-01-01")
+x
+unclass(x)
+unclass(as.Date("1970-01-02"))
+
+date() #muestra fecha y hora
+as.POSIXct("2016-09-26")
+
+
+# funciones de ciclo:
+# Lapply: aplica una fucion a toda una lista
+#Sapply:
+#Apply
+#Tapply
+#Mapply
+#   coercionar(cambia de tipo el objeto; as.lista(x))
+#      match.fun() = primero busca si existe una funcion con ese nombre,
+#       .internal= lo resuelve como en c, lo devuelve en R
+
+lapply
+x<-list(a=1:5,b=rnorm(10000))
+x
+lapply(x,mean)
+x<-list(a=1:5,b=rnorm(10),c=rnorm(10,1),d=rnorm(10,2))
+lapply(x,mean)
+
+x<-1:4
+lapply(x,runif)  #runif(genera numeros aleatorios con distribucion uniform, entre 0 y 1)
+x<-1:4
+lapply(x,runif,max=15,min=5) #runif(genera numeros aleatorios con distribucion uniform,
+# entre 5 y 15)
+
+
+##  sapply(x,mean) (comparacion)
+x<-list(a=1:5,b=rnorm(10),c=rnorm(10,1),d=rnorm(10,2))
+lapply(x,mean)
+sapply(x,mean)
+
+x<-1:4
+lapply(x,runif,max=15,min=5)
+sapply(x,runif,max=15,min=5)
+
+## Apply: evaluar una funcion
+str(apply)
+#margen 1= filas, margen 2= columnas en la matriz
+x<-matrix(rnorm(200),20,10)
+apply(x,2,mean)
+apply(x,1,sum)
+
+# opciones
+rowSums=apply(x,1,sum)
+rowMeans=apply(x,1,mean)
+colSums=apply(x,2,sum)
+colMeans=apply
+
+#otras formas
+x<- matrix(rnorm(200),20,10) # matrix genera no. aleatorios(200)
+apply(x,1,quantile,probs=c(0.25,0.75))
+
+a<-array(rnorm(2*2*10),c(2,2,10))
+apply(a,c(1,2),mean)
+rowMeans(a,dims=2)
+
+#mapply, es como apply pero multivariante,aplica una funcion  en paralelo
+#        a lo largo de un conjunto de argumentos.
+list(rep(1,4),rep(2,3),rep(4,1))
+mapply(rep,1:4,4:1)
+
+
+#### vectorizar una función
+noise<-function(n,mean,sd){
+    rnorm(n.mean,sd)
+    
+}
+noise(5,1,2)
+noise(1:5,1:5,2)
+
+
+mapply(noise,1:5,1:5,2)
+
+
+#### tapply= tabla, aplicar
+stri(tapply)  # x es un vector, index es un factor o una lista de factores,
+# fun es la funcion, .... otros argumentos, simplify se debe simplificar el resultado
+
+#gl crea niveles
+x<- c(rnor(10),runif(10),rnorm(10,1))
+f<- gl(3,10)
+f
+tapply(x,f,mean)
+
+
+tapply(x,f,mean,simplify = F)
 
 
 
