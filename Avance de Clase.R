@@ -733,6 +733,104 @@ tapply(x,f,mean)
 
 tapply(x,f,mean,simplify = F)
 
+# str(split)
+# function (x, f, drop = FALSE, ...); x es un vector, lista o data frame,
+#  f es un factor o lista de factores,drop indica si los factores vacios deberian de omitirse
+# split separa los datos de acuerdo a algun factor
+x<- c(rnorm(10),runif(10),rexp(10))
+f<-gl(3,10)
+f
+split(x,f)
+
+lapply(split(x,f),mean)
+library(datasets)
+head(airquality) #los primeros seis elementos
+
+base<-airquality
+meses<-base$Month
+split(base,meses)
+
+#lo mismo que :
+s<-split(airquality,airquality$Month)
+lapply(s,function(x)colMeans(x[,1:3]))  # cuando aplicas promedio 
+#a un objeto con datos faltantes el resultado será na
+lapply(s,function(x)colMeans(x[,1:3],na.rm = TRUE))
+sapply(s,function(x)colMeans(x[,1:4],na.rm=TRUE))
+
+#split a mas de un nivel
+
+##### Control de errores
+
+#message: 
+#warning: no detiene el codigo, indica que algo esta mal 
+#error
+#condition
+
+log(-1)
+#[1] NaN
+#Warning message:
+ #   In log(-1) : NaNs produced (el logaritmo de un numero negativo no existe)
+
+imprimeMSJ<- function(x){
+    if(x > 0)
+        print("x es mayor 0")
+    else
+        print("x es menor o igual que 0")
+    invisible(x)
+}
+
+imprimeMSJ(1)
+imprimeMSJ()
+
+imprimeMSJ2<-function(x){
+    if(is.na(x))
+        print("x es un valor faltante")
+    
+}
+
+
+
+
+#       herramientas para depurar
+#traceback: te dice cual fue la funcion donde se marco el error
+#debug
+#browser
+#trace
+#recover
+
+
+#traceback
+mean(x)
+#Error in mean(x) : object 'x' not found(no existe x en el entorno de trabajo)
+traceback()
+lm(y~x)
+traceback()
+
+debug(lm)
+lm(y~x)
+
+debug(lm)
+
+options(error=recover)
+read.csv("perritosgay")
+
+install.packages("swirl")
+library("swirl")
+swirl()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
