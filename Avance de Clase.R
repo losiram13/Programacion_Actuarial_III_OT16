@@ -815,37 +815,465 @@ options(error=recover)
 read.csv("perritosgay")
 
 install.packages("swirl")
-library("swirl")
-swirl()
+
+
+#### 05/10/16###
+#str:  muestra una forma compacta de la estructura interna de un objeto 
+str(str)
+x<-rnorm(100)
+str(x)
+summary(x)
+f<-gl(40,10)
+f
+str(f)
+summary(f)
+str(airquality)
+s<-matrix(rnorm(100),10,10)
+s
+str(s)
+r<-split(airquality,airquality$Month)
+r
+str(r)
+
+
+###resumen estadistico = summary
+
+#Generacion de Números aleatorios
+#->rnorm: genera num. aleatorios con desv. estandar 1
+#->dnorm= probabilidad de que una variable aleatoria de un valor especifico.
+#->Pnorm:evalua la función de distribución en un punto
+#->rpois: 
+
+#   d: densidad
+#   r: genera no, aleatorio
+#   p: para distribucion acumulada (probabilidad menor o igual)
+#   q: para el cuantil de una funcion
+
+
+x<- rnorm(10) # crea 10 no. aleatorios
+x
+y<-rnorm(10,50,5)
+y
+summary(x)
+summary(y)
+
+set.seed(1) #establecer semilla=1
+rnorm(5)
+set.seed(2) #establecer semilla=2
+rnorm(5)
+set.seed(1)
+rnorm(5)
+
+normal1<-rnorm(10000)
+normal2<-rnorm(10000,10,5)
+
+hist(normal1) # crea un histograma de frecuencias de valores
+summary(normal1)
+hist(normal2)
+summary(normal2)
+
+
+rpois(10,1) #distribucion poisson
+poisson1<-rpois(10000,1)
+poisson2<-rpois(10000,10)
+hist(poisson1)
+hist(poisson2)
+ppois(2,2)
+ppois(4,2)
+ppois(6,2)
+hist(rpois(100000,2))
+
+#contar los numeros en un intervalo
+as.numeric(as.integer(probs*10000))/10
+
+for(i in 0:11){dpois(1,2)}
+for(i in 0:11){print(dpois(i,2))}
+
+hist(runif(10000,10,20))# distribicion uniforme entre 10=min-20=max
+
+set.seed(20)#semilla
+x<-rnorm(100,0,1)
+e<-rnorm(100,0,2)
+y<-0.5+2*x+e
+plot(x,y) #graficar(x,y)
+
+z<-0.5+2*x
+plot(x,z)
+plot(z,y)
+
+
+set.seed(10)
+x<-rbinom(100,1,0.5)  # numero de exitos en una cierta cantidad de intentos, 
+#                      (cuantas,tamaño de la mustra,probabilidad de exito)
+e<-rnorm(100,0,2)
+y<-0.5+2*x+e
+summary(y)
+plot(x,y,main="Modelo Lineal", col="dark red")  #titulo de la grafica,Col="color"
+?plot
+set.seed(10)
+x<-rbinom(100,1,0.5)  # numero de exitos en una cierta cantidad de intentos, 
+#                      (cuantas,tamaño de la mustra,probabilidad de exito)
+e<-rnorm(100,0,2)
+y<-0.5+5*x+e
+summary(y)
+plot(x,y,main="Modelo Lineal", col="dark red")  #titulo de la grafica,Col="color"
+
+set.seed(10)
+x<-rbinom(100,1,0.5)  # numero de exitos en una cierta cantidad de intentos, 
+#                      (cuantas,tamaño de la mustra,probabilidad de exito)
+e<-rnorm(100,0,1)
+y<-0.5+2*x+e
+summary(y)
+plot(x,y,main="Modelo Lineal", col="dark red")  #titulo de la grafica,Col="color"
+
+
+########## modelando,"Poisson"
+set.seed(1)
+x<-rnorm(100)
+log.mu <-0.5+0.3*x
+y<-rpois(100,exp(log.mu)) #rpois = poisson
+summary(y)
+plot(x,y,main="Modelo Poisson", col="forestgreen")
+
+
+        ######## 10/10/2016
+set.seed(1)
+#muestreo:tomar al azar dentro de un grupo de valores
+
+sample(1:10,4)
+sample(1:5,4)
+sample(LETTERS,5)
+sample(1:10) # existen 10! formass de ordenar  #permutación
+sample(1:10,replace=TRUE) # existen 10^10 formas de ordenar 
+
+####### Perfilaje......
+#   respone.¿Por qué mi codigo es lento?
+#usar system.time(). toma una expresion arbitraria de R como argumento y 
+#devuelve la cantidad de tiempo que se tarda en ejecutar la expresio en cpu(usertime),
+#cuanto esperé (elapsed time).
+
+
+system.time(readLines("http://www.fcfm.buap.mx"))
+
+#system.time(readLines("http://www.fcfm.buap.mx"))
+#user  system elapsed 
+#0.72    0.56    1.29 
+
+
+hilbert<-function(n){
+    i<-1:n
+    1/outer(i-1,i,"+")
+}
+    
+x<-hilbert(1000) ### investigar que hace
+system.time(x<-hilbert(1000))
+system.time(svd(x))
+
+# perfilador de R
+> # funcion Rprof() inicia el perfilador de r
+    # no correr sistem.time() y Rprof juntos
+#Rprof revisa la linea de ejecucion periodicamente en intervalos regulares y 
+    #tabula cuanto tiempo pasa cada función
+    
+    
+    
+    ###############################################################3
+    
+    #Limpieza y depuracion de datos
+    
+#Datos brutos: tal y como los encontramos
+#Datos Procesdos: 
+    #Datos ordenado:
+#-> Datos brutos, Ordenados, Libro de codigo que escriba cada variable y los 
+#valores que iene c/u
+
+#Datos brutos, Un archivo binario que entrega como resultado una maquina de medición
+# estos datos estan en el formato correcto si :
+#   1.- no se utiliza software con los datos
+#   2.- no se manipula ninguno de los valores de los datos
+#   3.- no se remueve ningun valor de los datos
+#   4.- no se resumen los datos de ninguna forma
+
+
+# Datos ordendos:
+# variable en una columna
+# Cada observacion aparece en cada fila
+# tabla para cada tipo de variable
+# una columna que los vinculara
+
+#tips
+#-> incluir una fila al inicio con el nombre de las variables 
+#-> haz los nombre de las variables entendibles
+# -> guarda la informacion de una tabla por archivo
+
+#Libro de codigo:
+#-> informacion acerca de las  variables
+#-> informacion acerca de la sintesis que se realizaron
+#-> informacion acerca del diseño experimental utilizado
+
+# Algunos tipos importante:
+#-> un formato comun para este documento es un archivo de word/texto
+#-> contener una seccion llamada "Diseño experimental"
+#-> "Libro de codigos"
+
+
+
+#ubicacion absoluta: 
+#ubicaciones relativas: donde estoy ubicado, (~)
+
+
+
+getwd()
+
+tail(list.files(),2)
+setwd("./testdir")
+
+getwd()
+setwd("../")
+setwd("~")
+#funciones  de busqueda y creacion de directorios
+# file.exists("nombre del directorio") busca si existe un directorio con ese nombre
+# dir.create("nombre del directorio") crea un directorio con ese nombre
+
+if (file.exists("data")==FALSE){ 
+    dir.create("data")
+}
+
+if (!file.exists("data")){
+    dir.create("data")
+}
+file.exists("data")
+
+#download.file(), descarga un archivo desde internet, ayuda a la replicación, parametros(url, )
+
+#Carga de archivos
+# read.table, es el principal para cargar y leer datos, flexible y robusta, requiere mas parametros
+ 
+#Algunos parametros importantes:
+# quote- le dice a r si existe un comentario (quote=""), no hay comentarios
+# na.strings, establece que el caracter que corresponde a valores faltantes
+# nrows, dice la cantidad de filas a leer del archivo
+# skip- una cantidad de filas a evitar antes antes de iniciar la lectura
+
+install.packages("rJava")
+install.packages("xlsx")
+library(rJava)
+
+
+
+######  26-10-16  ############
+#funcion Write
+#formato XML: almacenar datos, 
+# etiquetas: inicio, cierre, vacias
+
+
+install.packages("XML")
+library(XML)
+url<-"http://www.w3schools.com/xml/simple.xml"
+data<- xmlTreeParse(url, useInternalNodes = TRUE)
+nodoRaiz<-xmlRoot(data)
+xmlName(nodoRaiz)
+names(nodoRaiz)
+
+#extraccion de datos
+xmlSApply(nodoRaiz,xmlValue)# te da lo que esta almacenado en ese nodo
+
+# XPath:
+# /nodo ,nodo de nivel superior
+# //
+
+
+#obtener precios y nombre+
+xpathSApply(nodoRaiz,"//name",xmlValue)
+
+xpathSApply(nodoRaiz,"//price",xmlValue)
+
+
+# http://www.start.berkel
+
+
+# Archivo Json: 
+install.packages("jsonlite")
+library(jsonlite)
+jsonData<-fromJSON("http://api.github.com/users/Losiram13/repos")
+names(jsonData)
+
+jsonData$name
+
+iris
+#Conversion a json
+myjson<- toJSON(iris, pretty = TRUE)
+cat(myjson)
+
+#conversion desde json a dataframe
+iris2<- fromJSON(myjson)
+head(iris2)
+
+##########27-10-16############333
+#Data.table hereda de dataframe todas las funciones que lo aceptan.
+install.packages("data.table")
+library(data.table)
+DF=data.frame(x=rnorm(9),y=rep(c("a","b","c"),each=3),z=rnorm(9))
+DF
+DT=data.table(x=rnorm(9),y=rep(c("a","b","c"),each=3),z=rnorm(9))
+head(DT,3)
+tables()
+DT[2,]
+DT[DT$y=="a"] #datos que tengan valores igual a "a"
+
+DT[DT$y=="b"]
+DT[DT$y=="a"]
+DT[c(2,3)]
+DT[,c(2,3)]
+
+
+#subconjunto de columnas
+#el argumento que se pone despues de la coma es llamado una expresion
+#en r una expresion es una coleccion de declaraciones delimitada por llaves
+{x=1
+y=5}
+DT[,list(mean(x),sum(z))]
+DT[,table(y)]
+DT[,w:=z^2]
+DT
+
+DT2<-DT
+DT[,y:=2]
+DT
+head(DT)
+head(DT2)=tambien cambia los datos, si modificas el original
+DT[,m:={tmp<-(x+z);log2(tmp+5)}]
+DT
+DT[,a:=x>0]
+DT
+DT[,b:=mean(x+w),by=a]
+DT
+
+set.seed(123)
+DT<-data.table(x=sample(letters[1:3],1E5,TRUE))
+DT[,.N,by=x] #crea una funcion .N y cuenta cuantas valores dio de cada variable
+
+
+
+
+library(swirl)
+install_from_swirl("Getting_and_Cleaning_Data")
+
+Leaving swirl now. Type swirl() to resume.
+
+
+# lectura oara trabajar con datos : http://vita.had.co.nz/papers/tidy-data.pdf
+
+
+########09/11/16######
+DT<- data.table(x=rep(letters[1:3],each=100),
+y=rnorm(300))
+setkey(DT,x) 
+DT['a']
+
+DT1<- data.table(x=c('a','a','b','dt1'),y=1:4)
+DT2<-data.table(x=c('a','b','dt2'),z=5:7)
+setkey(DT1,x);set2key(DT2,x)
+merge(DT1,DT2) #variables que aparecen en una y otra tabla
+
+set.seed(1)
+df_gde<-data.frame(x=rnorm(1E6),y=rnorm(1E6))
+file<-tempfile()
+write.table(df_gde,file=file,row.names=F, col.names=T,sep="\t",quote=F)
+system.time(fread(file))
+system.time(read.table(file,header = T,sep="\t"))
+
+
+##otro formato para bases de datos: (mySQL)
+#bases de datos, Tablas 
+
+install.packages("RMySQL")
+library(RMySQL)
+ucscDb<-dbConnect(MySQL(),user="genome",
+                  host="genome-mysql.cse.ucsc.edu")
+result<-dbGetQuery(ucscDb,"show databases;");dbDisconnect(ucscDb);
+result
+
+
+#######10/11/16##
+#conectar a hg19 y listado de tablas
+hg19<- dbConnect(MySQL(),user="genome",db="hg19", host="genome-mysql.cse.ucsc.edu")
+tablas<-dbListTables(hg19)
+length(tablas)
+tablas[1:3]
+#obtener dimensiones de una tabla en especifico
+dbListFields(hg19,"affyU133Plus2")
+
+#leer desde la tabla
+affydata<-dbReadTable(hg19,)
+
+dbDisconnect(hg19)
+
+
+##16-11-16###
+# HDF5 almacena una gran base  de datos, dif. clases de datos, guarda la informacion como si fueran carpetas 
+
+source("http://bioconductor.org/biocLite.R")
+biocLite("rhdf5") #instala los paquetes 
+library(rhdf5)
+created=h5createFile("example.h5") 
+created
+
+#copiar de diapositivas 
+# 
+
+### si pones a actualiza todos los paquetes en r###
+h5write(c(12,13,14), "example.h5","foo/A",index=list(1:3,1)) #pone en la primer columna los datos del 12-14
+h5read("example.h5","foo/A") 
+
+#Webscraping. extraccion programada de informacion desde codigo HTML
 
 
 
 
 
+####
+set.seed(13435)
+x<-data.frame("var1"=sample(1:5),"var2"=sample(6:10),"var3"=sample(11:15))
+x
+x<- x[sample(1:5),]
+x
+x$var2[c(1,3)]=NA
+x[,1] # "=" # x[,"var2"]
+x$var2[c(1:2)]
+x[1:2,"var2"]
 
+subset(x,x$var1<=3 & x$var3>11)
+x[x$var1<=3 & x$var3>11,] #hace lo mismo que la anterior
 
+# & = y, &&= te da el resultado en ambas columnas o una o otra 
+x$var1<=3 & x$var3>11
+x$var1<=3 && x$var3>11
 
+which(x$var2>8)
+x[which(x$var2>8),] #extraer las filas con esas caracteristicas
+sort(x$var1,decreasing = TRUE) #ordenar 
+sort(x$var1)
 
+sort(x$var2,decreasing = TRUE,na.last = FALSE)
+sort(x$var2,na.last = FALSE)
+sort(x$var2,decreasing = TRUE,na.last = TRUE)
+sort(x$var2,na.last = TRUE)
+?sort
 
+order(x$var1) #posicion del valor ordenado
 
+x[order(x$var1),] # ordena de acuerdo a la variable var1 
 
+x[order(x$var2,decreasing = T,na.last = FALSE),]
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#plyr 
+library(plyr)
+arrange(x,var1)
+arrange(x,desc(var1)) #ordenar de forma decresiente
+x$var4<-rnorm(5) # crea otra variable en x
+x
+cbind(x,rnorm(5))
+x
 
 
